@@ -18,7 +18,7 @@ export function WhatsAppButton() {
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 rounded-full p-3 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-110 z-20 bg-white flex items-center justify-center"
           >
-              <Image src="/logoWhatsApp.png" alt="whatsapp" width={35} height={35} />
+              <Image src="/images/logoWhatsApp.png" alt="whatsapp" width={35} height={35} />
           </Link>
         </TooltipTrigger>
         <TooltipContent side="left" align="center" className="bg-purple-600 text-slate-100 rounded-full">
