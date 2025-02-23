@@ -1,8 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import CyclingImage from "@/components/CyclingImage"
 import Link from "next/link"
+import Image from "next/image"
 
 // Updated portfolio items with arrays of images
 const portfolioItems = [
@@ -65,7 +65,7 @@ export default function PortfolioPage() {
                 {item.title}
               </h3>
               <Link href={`portfolio${item.href}`}>
-                <CyclingImage images={item.images} alt={item.title} />
+                 <Image width={500} height={500} src={item.images[0]} alt={item.title} />
               </Link>
             </motion.div>
           ))}

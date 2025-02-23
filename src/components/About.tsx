@@ -24,7 +24,7 @@ export default function About() {
           <Image
             src="/images/me.jpg"
             alt="תמונה שלי"
-            width={300} // Default width for mobile
+            width={200} // Default width for mobile
             height={190} // Default height for mobile
             className="rounded-lg shadow-lg md:w-[400px] md:h-[250px] w-[300px] h-[190px]"
           />

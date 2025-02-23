@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: "קורסי איפור וסירוק שיער",
     description: "למדי איפור וסירוק שיער מקצועי",
-    url: 'https://judaica-chabad.vercel.app',
+    url: 'https://makeup-courses.vercel.app',
     siteName: "קורסי איפור וסירוק שיער",
     images: [
       {
-        url: 'https://judaica-chabad.vercel.app/images/lips.jpg',
+        url: 'https://makeup-courses.vercel.app/images/lips.jpg',
         width: 1200,
         height: 630,
         alt:  "קורסי איפור וסירוק שיער",
