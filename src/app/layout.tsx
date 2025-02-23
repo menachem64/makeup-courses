@@ -4,6 +4,8 @@ import type { Metadata } from "next"
 import { Heebo } from "next/font/google"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
+import { WhatsAppButton } from "@/components/WhatsAppButton"
+import Script from "next/script"
 
 const heebo = Heebo({ subsets: ["hebrew"] })
 
@@ -39,6 +41,11 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppButton />
+        <Script
+                src="https://cdn.enable.co.il/licenses/enable-L361602skdupxwgi-0125-67407/init.js"
+                strategy="afterInteractive" // טוען את הסקריפט אחרי שהעמוד הופך לאינטראקטיבי
+        />
       </body>
     </html>
   )
