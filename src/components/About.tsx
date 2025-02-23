@@ -26,7 +26,7 @@ export default function About() {
             alt="תמונה שלי"
             width={200} // Default width for mobile
             height={190} // Default height for mobile
-            className="rounded-lg shadow-lg md:w-[400px] md:h-[250px] w-[300px] h-[190px]"
+            className="rounded-lg shadow-lg md:w-[400px] md:h-[250px] w-[250px] h-[190px]"
           />
         </motion.div>
         <motion.div
