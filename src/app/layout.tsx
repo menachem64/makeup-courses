@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: "קורסי איפור וסירוק שיער",
     images: [
       {
-        url: 'https://makeup-courses.vercel.app/images/lips.svg',
+        url: 'https://makeup-courses.vercel.app/images/me.jpg',
         width: 1200,
         height: 630,
         alt:  "קורסי איפור וסירוק שיער",
