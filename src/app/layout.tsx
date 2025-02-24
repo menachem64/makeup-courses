@@ -51,4 +51,3 @@ export default function RootLayout({
   )
 }
 
-//https://grok.com/chat/51328093-5634-4637-a507-cfc9c30bbb4c

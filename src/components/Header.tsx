@@ -8,29 +8,33 @@ import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0); // לעקוב אחר אחוז הגלילה
   const pathname = usePathname();
   const router = useRouter();
   const isHomePage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      const scrollTop = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const maxScroll = documentHeight - windowHeight; // מקסימום גלילה אפשרי בדף הנוכחי
+      const scrollPercentage = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0; // חישוב אחוז הגלילה
+
+      setIsScrolled(scrollTop > 0);
+      setScrollProgress(Math.min(scrollPercentage, 100)); // מגביל ל-100%
     };
 
-    if (isHomePage) {
-      window.addEventListener("scroll", handleScroll);
-    }
+    // מופעל בכל דף, לא רק בדף הבית
+    window.addEventListener("scroll", handleScroll);
+
+    // עדכון ראשוני בעת טעינת הדף
+    handleScroll();
 
     return () => {
-      if (isHomePage) {
-        window.removeEventListener("scroll", handleScroll);
-      }
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, [isHomePage]);
+  }, []); // הסרנו את התלות ב-isHomePage כדי שיפעל בכל דף
 
   const handleContactScroll = () => {
     if (isHomePage) {
@@ -51,7 +55,7 @@ const Header = () => {
 
   return (
     <header className={headerClasses}>
-      <div className="container mx-auto px-4 py-4">
+      <div className="container mx-auto px-4 py-4 relative">
         <nav className="flex justify-between items-center">
           <div className="flex items-center gap-4">
             {!isHomePage ? (
@@ -59,7 +63,7 @@ const Header = () => {
                 <Link href="/">
                   <Button variant="logo">בית</Button>
                 </Link>
-                <a href="tel:09-773-4300" className="hidden md:flex items-center gap-2 font-bold">
+                <a href="tel:054-761-1046" className="hidden md:flex items-center gap-2 font-bold">
                   <Phone className="h-4 w-4" />
                   <span dir="ltr">054-761-1046</span>
                 </a>
@@ -69,7 +73,7 @@ const Header = () => {
                 <Button variant="outline" onClick={handleContactScroll}>
                   צרו קשר
                 </Button>
-                <a href="tel:09-773-4300" className="hidden md:flex items-center gap-2 font-bold">
+                <a href="tel:054-761-1046" className="hidden md:flex items-center gap-2 font-bold">
                   <Phone className="h-4 w-4" />
                   <span dir="ltr">054-761-1046</span>
                 </a>
@@ -80,6 +84,11 @@ const Header = () => {
             LOGO
           </Link>
         </nav>
+        {/* Scroll Progress Bar */}
+        <div
+          className="absolute bottom-0 left-0 h-1 bg-primary duration-300"
+          style={{ width: `${scrollProgress}%` }}
+        />
       </div>
     </header>
   );
