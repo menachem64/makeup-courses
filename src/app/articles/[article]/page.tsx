@@ -3,7 +3,6 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
-import { title } from "process";
 
 // Course content based on route
 type CoursePaths =  "/articles/studio" | "/articles/makeup" | "/articles/hairstyling";
