@@ -6,8 +6,9 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const features = [
-  { href: "/makeup", title: "קורסי איפור", description: "למדי טכניקות איפור מתקדמות", image: "/images/makeupCourse.webp" },
-  { href: "/hairstyling", title: "קורסי סירוק שיער", description: "גלי את סודות הסירוק המקצועי", image: "/images/heirStylingCourse.jpg" },
+  { href: "/studio", title: "הסטודיו שלי", description: "סטודיו לאיפור וסירוק שיער", image: "/images/articles/studio/image0.jpeg" },
+  { href: "/makeup", title: "קורסי איפור", description: "למדי טכניקות איפור מתקדמות", image: "/images/articles/makeup/image0.jpeg" },
+  { href: "/hairstyling", title: "קורסי סירוק שיער", description: "גלי את סודות הסירוק המקצועי", image: "/images/articles/hairstyling/image0.jpeg" },
 ];
 
 export default function Courses() {
@@ -15,7 +16,7 @@ export default function Courses() {
   
   return (
     <div className="container mx-auto px-6 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <motion.div
             key={index}

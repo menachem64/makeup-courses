@@ -8,32 +8,26 @@ import Image from "next/image"
 const portfolioItems = [
   {
     id: 1,
-    title: "גלריית כלות",
-    href:"/bridal",
+    title: "איפור ערב וכלות",
+    href:"/makeup",
     images: [
-      "/images/portfolio/bridal/image1.webp",
-      "/images/portfolio/bridal/image2.jpg",
-      "/images/portfolio/bridal/image3.jpg",
-    ]
+      "/images/portfolio/makeup/image0.jpeg"
+    ] 
   },
   {
     id: 2,
-    title: "גלריית ערב",
-    href:"/evening",
+    title: "עיצוב שיער",
+    href:"/heirStyling",
     images: [
-      "/images/portfolio/evening/image1.jpg",
-      "/images/portfolio/evening/image2.jpg",
-      "/images/portfolio/evening/image3.jpg"
+      "/images/portfolio/heirStyling/image0.jpeg",
     ]
   },
   {
     id: 3,
-    title: "גלריית טבעי",
-    href:"/natural",
+    title: "סדנאות",
+    href:"/courses",
     images: [
-      "/images/portfolio/natural/image1.jpg",
-      "/images/portfolio/natural/image2.jpg",
-      "/images/portfolio/natural/image3.jpg"
+      "/images/portfolio/courses/image0.jpeg",
     ]
   }
 ]

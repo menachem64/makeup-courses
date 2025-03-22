@@ -22,7 +22,7 @@ export default function About() {
           className="md:w-1/2 flex justify-center"
         >
           <Image
-            src="/images/me.jpg"
+            src="/images/me.jpeg"
             alt="תמונה שלי"
             width={200} // Default width for mobile
             height={190} // Default height for mobile
@@ -36,7 +36,7 @@ export default function About() {
           className="md:w-1/2 space-y-6"
         >
           <p className="text-lg leading-relaxed text-gray-700">
-            שלום, אני חיה. אני מאפרת ומעצבת שיער מקצועית עם ניסיון של למעלה מ-10 שנים בתעשייה.
+            שלום, אני חיה. אני מאפרת ומעצבת שיער מקצועית עם ניסיון של רב בתעשייה.
           </p>
           <p className="text-lg leading-relaxed text-gray-700">
             התשוקה שלי היא לעזור לאנשים להרגיש ולהיראות הכי טוב שהם יכולים. דרך הקורסים שלי, אני מעבירה את הידע והניסיון

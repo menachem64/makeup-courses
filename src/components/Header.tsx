@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Phone } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -65,23 +66,30 @@ const Header = () => {
                 </Link>
                 <a href="tel:054-761-1046" className="hidden md:flex items-center gap-2 font-bold">
                   <Phone className="h-4 w-4" />
-                  <span dir="ltr">054-761-1046</span>
+                  <span dir="ltr">053-622-0137</span>
                 </a>
               </>
             ) : (
               <>
                 <Button variant="outline" onClick={handleContactScroll}>
-                  צרו קשר
+                  צרי קשר
                 </Button>
                 <a href="tel:054-761-1046" className="hidden md:flex items-center gap-2 font-bold">
                   <Phone className="h-4 w-4" />
-                  <span dir="ltr">054-761-1046</span>
+                  <span dir="ltr">053-622-0137</span>
                 </a>
               </>
             )}
           </div>
           <Link href="/" className="text-2xl font-bold">
-            LOGO
+            {/* <Image
+              src="/logo.jpeg"
+              alt="לוגו"
+              width={50}
+              height={50}
+              className="cursor-pointer"
+            /> */}
+            Chaya LIPsker
           </Link>
         </nav>
         {/* Scroll Progress Bar */}

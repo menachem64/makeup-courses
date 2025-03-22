@@ -14,16 +14,16 @@ const Footer = () => {
               <p className="flex items-center gap-3 group">
                 <span className="text-primary transition-transform group-hover:scale-110">📞</span>
                 <span dir="ltr" className="hover:text-primary transition-colors duration-200">
-                  123-456-7890
+                  053-622-0137
                 </span>
               </p>
               <p className="flex items-center gap-3 group">
                 <span className="text-primary transition-transform group-hover:scale-110">✉️</span>
                 <a 
-                  href="mailto:info@example.com" 
+                  href="mailto:Chaya.makeup.hair24@gmail.com" 
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  info@example.com
+                 Chaya.makeup.hair24@gmail.com
                 </a>
               </p>
             </div>

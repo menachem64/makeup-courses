@@ -12,6 +12,9 @@ const heebo = Heebo({ subsets: ["hebrew"] })
 export const metadata: Metadata = {
   title: "קורסי איפור וסירוק שיער",
   description: "למדי איפור וסירוק שיער מקצועי",
+  icons: {
+    icon: '/favicon.ico'
+  },
   openGraph: {
     title: "קורסי איפור וסירוק שיער",
     description: "למדי איפור וסירוק שיער מקצועי",

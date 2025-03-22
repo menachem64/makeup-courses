@@ -5,33 +5,52 @@ import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
 
-const galleryItems = [
-  // Bridal category
-  { id: 1, category: "bridal", title: "איפור כלה", image: "/images/portfolio/bridal/image1.webp", description: "איפור מושלם ליום המיוחד" },
-  { id: 2, category: "bridal", title: "סירוק כלה", image: "/images/portfolio/bridal/image2.jpg", description: "תסרוקת חלומית לחתונה" },
-  { id: 3, category: "bridal", title: "סירוק כלה", image: "/images/portfolio/bridal/image3.jpg", description: "תסרוקת חלומית לחתונה" },
-  // Evening category
-  { id: 4, category: "evening", title: "סירוק ערב", image: "/images/portfolio/evening/image1.jpg", description: "תסרוקת אלגנטית לאירוע" },
-  { id: 5, category: "evening", title: "איפור ערב", image: "/images/portfolio/evening/image2.jpg", description: "מראה זוהר לערב" },
-  { id: 6, category: "evening", title: "איפור ערב", image: "/images/portfolio/evening/image3.jpg", description: "מראה זוהר לערב" },
-  // Natural category
-  { id: 7, category: "natural", title: "איפור טבעי", image: "/images/portfolio/natural/image1.jpg", description: "מראה רענן וקליל" },
-  { id: 8, category: "natural", title: "תסרוקת טבעית", image: "/images/portfolio/natural/image2.jpg", description: "סגנון פשוט ויפה" },
-  { id: 9, category: "natural", title: "תסרוקת טבעית", image: "/images/portfolio/natural/image3.jpg", description: "סגנון פשוט ויפה" }
-]
-
 // Content for different routes
 type PageContent = {
   [key: string]: {
     title: string;
     intro: string;
+    images?: { id: number; category: string; title: string; image: string; description: string }[];
   };
 };
 
 const pageContent: PageContent = {
-  "/portfolio/bridal": { title: "גלריית כלות", intro: "מבחר עבודות של איפור ותסרוקות לחתונה - יופי קלאסי ליום המיוחד שלך." },
-  "/portfolio/evening": { title: "גלריית ערב", intro: "עיצובים אלגנטיים לאירועים מיוחדים - תסרוקות ואיפור שגונבים את ההצגה." },
-  "/portfolio/natural": { title: "גלריית טבעי", intro: "מראות רעננים וקלילים ליום יום - יופי טבעי במיטבו." }
+  "/portfolio/makeup": { 
+    title: "גלריית איפור", 
+    intro: "מבחר עבודות של איפור ערב וכלות - יופי קלאסי ליום המיוחד שלך." ,
+    images: [
+      { id: 1, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image1.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 2, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image2.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 3, category: "makeup", title: "איפור כלה ", image: "/images/portfolio/makeup/image3.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 4, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image4.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 5, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image5.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 6, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image6.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 7, category: "makeup", title: "איפור כלה ", image: "/images/portfolio/makeup/image7.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 8, category: "makeup", title: "איפור כלה ", image: "/images/portfolio/makeup/image8.jpeg", description: "איפור מושלם לערב המיוחד" },
+      { id: 9, category: "makeup", title: "איפור ערב ", image: "/images/portfolio/makeup/image9.jpeg", description: "איפור מושלם לערב המיוחד" },
+    ]
+  },
+  "/portfolio/heirStyling": {
+     title: "עיצוב שיער",
+     intro: "עיצובים מרהיבים ומיוחדים לכל אירוע - תסרוקות מושלמות לכל סוגי השיער.",
+     images: [
+      { id: 1, category: "heirStyling", title: "עיצוב שיער", image: "/images/portfolio/heirStyling/image1.jpeg", description: "עיצוב שיער מושלם לכל אירוע" },
+      { id: 2, category: "heirStyling", title: "עיצוב שיער", image: "/images/portfolio/heirStyling/image2.jpeg", description: "עיצוב שיער מושלם לכל אירוע" }, 
+      { id: 3, category: "heirStyling", title: "עיצוב שיער", image: "/images/portfolio/heirStyling/image3.jpeg", description: "עיצוב שיער מושלם לכל אירוע" },
+     ]
+  },
+  "/portfolio/courses": { 
+    title: "סדנאות", 
+    intro: "מראות רעננים וקלילים ליום יום - יופי טבעי במיטבו.",
+    images: [
+      { id: 1, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image1.jpeg", description: "סדנאות יופי ואיפור" },
+      { id: 2, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image2.jpeg", description: "סדנאות יופי ואיפור" },
+      { id: 3, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image3.jpeg", description: "סדנאות יופי ואיפור" },
+      { id: 4, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image4.jpeg", description: "סדנאות יופי ואיפור" },
+      { id: 5, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image5.jpeg", description: "סדנאות יופי ואיפור" },
+      { id: 6, category: "courses", title: "סדנאות", image: "/images/portfolio/courses/image6.jpeg", description: "סדנאות יופי ואיפור" },
+    ]
+  },
 }
 
 export default function GalleryPage() {
@@ -45,9 +64,6 @@ export default function GalleryPage() {
 
   // Filter gallery items based on route
   const category = pathname.split("/")[2] // Extract category from route (e.g., "bridal" from "/portfolio/bridal")
-  const filteredItems = category 
-    ? galleryItems.filter(item => item.category === category)
-    : galleryItems // Show all items if no specific category
 
   // Breadcrumbs logic
   const breadcrumbs = [
@@ -66,7 +82,7 @@ export default function GalleryPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-8 text-sm md:text-base"
+          className="mb-4 text-sm md:text-base"
           aria-label="Breadcrumb"
         >
           <ol className="flex items-center gap-2 flex-wrap">
@@ -92,23 +108,23 @@ export default function GalleryPage() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-center mb-12"
+          className="flex flex-col items-center justify-center min-h-[50vh] mb-0"
         >
-          <h1 className="text-5xl md:text-6xl font-bold bg-primary bg-clip-text text-transparent">
+          <h1 className="text-5xl text-center md:text-6xl font-bold bg-primary bg-clip-text text-transparent">
             {currentContent.title}
           </h1>
-          <p className="mt-4 text-lg md:text-xl text-gray-700 max-w-2xl mx-auto">
+          <p className="mt-4 text-center text-lg md:text-xl text-gray-700 max-w-2xl">
             {currentContent.intro}
           </p>
         </motion.div>
 
         {/* Check if filteredItems is empty */}
-        {filteredItems.length === 0 ? (
+        {currentContent.images?.length === 0 ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center"
+            className="text-center border-2 border-dashed border-gray-300 rounded-lg p-8 mt-8"
           >
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-4">
               הקטגוריה המבוקשת לא נמצאה
@@ -123,7 +139,7 @@ export default function GalleryPage() {
         ) : (
           /* Gallery grid with filtered items */
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredItems.map((item, index) => (
+            {currentContent.images?.map((item, index) => (
               <motion.div
                 key={item.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -139,16 +155,16 @@ export default function GalleryPage() {
                   height={300}
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent flex items-end justify-center md:opacity-0 md:group-hover:opacity-90 opacity-90 transition-opacity duration-300">
+                {/* <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent flex items-end justify-center md:opacity-0 md:group-hover:opacity-90 opacity-90 transition-opacity duration-300">
                   <div className="text-white p-4 transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-300 translate-y-0">
-                    <h3 className="text-xl md:text-2xl font-semibold">
+                    <h3 className="text-xl text-center md:text-2xl font-semibold">
                       {item.title}
                     </h3>
-                    <p className="text-sm mt-1 hidden md:group-hover:block">
+                    <p className="text-sm  text-center mt-1 hidden md:group-hover:block">
                       {item.description}
                     </p>
                   </div>
-                </div>
+                </div> */}
               </motion.div>
             ))}
           </div>

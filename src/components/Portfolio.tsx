@@ -6,8 +6,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
 const images = [
-  "/images/makeup.jpg",
-  "/images/makeupCourse.webp",
+  "/images/portfolio/backgrond/image1.webp",
+  "/images/portfolio/backgrond/image2.jpg",
+  "/images/portfolio/backgrond/image3.jpg",
+  "/images/portfolio/backgrond/image4.jpg",
+  "/images/portfolio/backgrond/image5.jpg",
+  "/images/portfolio/backgrond/image6.jpg",
 ];
 
 export default function Portfolio() {
