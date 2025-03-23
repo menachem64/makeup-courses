@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 const faqs = [
   {
     question: "כמה זמן נמשך קורס?",
-    answer: " האיפור וכן קורס עציוב שיער נמשך 4 שעות, עם.",
+    answer: "הקורס נמשך כארבע שעות.",
   },
   {
     question: "האם צריכים להביא ציוד ?",

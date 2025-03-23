@@ -18,7 +18,8 @@ const config: Config = {
         serif: ["Frank Ruhl Libre", "serif"],
       },
       colors: {
-        primary: "#FF69B4",
+        primary: "#c2679f",
+        // primary: "#FF69B4",
         secondary: "#FFC0CB",
         accent: "#FF1493",
         border: "hsl(var(--border))",

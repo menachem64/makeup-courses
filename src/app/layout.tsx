@@ -10,8 +10,8 @@ import Script from "next/script"
 const heebo = Heebo({ subsets: ["hebrew"] })
 
 export const metadata: Metadata = {
-  title: "קורסי איפור וסירוק שיער",
-  description: "למדי איפור וסירוק שיער מקצועי",
+  title: "Chaya LIPsker",
+  description: "סטודיו וקורסים לאיפור וסירוק שיער",
   icons: {
     icon: '/favicon.ico'
   },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: "קורסי איפור וסירוק שיער",
     images: [
       {
-        url: 'https://makeup-courses.vercel.app/images/makeup.jpg',
+        url: 'https://makeup-courses.vercel.app/logo.jpeg',
         width: 1200,
         height: 630,
         alt:  "קורסי איפור וסירוק שיער",
