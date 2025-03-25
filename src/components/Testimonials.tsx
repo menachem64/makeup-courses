@@ -23,17 +23,35 @@ export default function Testimonials() {
 
   const getVisibleTestimonials = () => {
     const start = currentIndex % testimonials.length;
-    return testimonials.slice(start, start + 3);
+    const end = start + 3;
+    if (end <= testimonials.length) {
+      return testimonials.slice(start, end);
+    }
+    return [...testimonials.slice(start), ...testimonials.slice(0, end - testimonials.length)];
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      controls.start({ opacity: 0, y: 50, transition: { duration: 0.5, ease: 'easeInOut' } })
-        .then(() => {
-          setCurrentIndex((prev) => (prev + 3) % testimonials.length);
-          controls.start({ opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeInOut' } });
-        });
-    }, 20000);
+    const animate = async () => {
+      // Immediate transition without delay
+      await controls.start({
+        opacity: [1, 0], // Quick fade out
+        y: [0, 20],
+        transition: { duration: 0.3, ease: 'easeOut' }
+      });
+      
+      setCurrentIndex((prev) => (prev + 3) % testimonials.length);
+      
+      await controls.start({
+        opacity: [0, 1], // Immediate fade in
+        y: [20, 0],
+        transition: { duration: 0.3, ease: 'easeIn' }
+      });
+    };
+
+    // Initial animation
+    controls.start({ opacity: 1, y: 0 });
+
+    const interval = setInterval(animate, 5000); // Reduced to 5s for better testing, adjust as needed
     return () => clearInterval(interval);
   }, [controls]);
 
@@ -51,15 +69,16 @@ export default function Testimonials() {
           המלצות
         </motion.h1>
 
-        <div className="overflow-hidden ">
+        <div className="overflow-hidden">
           <motion.div
             animate={controls}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-2 "
+            initial={{ opacity: 0, y: 20 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-2"
           >
             {visibleTestimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="relative  shadow-md bg-white rounded-3xl overflow-hidden h-auto w-auto flex items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-3xl"
+                className="relative shadow-md bg-white rounded-3xl overflow-hidden h-auto w-auto flex items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-3xl"
               >
                 <Image
                   src={testimonial.image}

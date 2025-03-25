@@ -16,16 +16,16 @@ export const metadata: Metadata = {
     icon: '/favicon.ico'
   },
   openGraph: {
-    title: "קורסי איפור וסירוק שיער",
-    description: "למדי איפור וסירוק שיער מקצועי",
+    title: "Chaya LIPsker",
+    description: "סטודיו וקורסים לאיפור וסירוק שיער",
     url: 'https://makeup-courses.vercel.app',
-    siteName: "קורסי איפור וסירוק שיער",
+    siteName: "לאיפור וסירוק שיער",
     images: [
       {
         url: 'https://makeup-courses.vercel.app/logo.jpeg',
         width: 1200,
         height: 630,
-        alt:  "קורסי איפור וסירוק שיער",
+        alt:  "איפור וסירוק שיער",
       },
     ],
     locale: 'he_IL',
