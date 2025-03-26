@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useMedia } from 'react-use';
 import { motion } from 'framer-motion';
-import { FaMapPin  } from "react-icons/fa6";
 
 export default function Testimonials() {
   const isMobile = useMedia('(max-width: 1024px)', false);
