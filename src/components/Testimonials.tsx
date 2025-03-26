@@ -1,97 +1,119 @@
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
+'use client';
 
-const testimonials = [
-  { id: 1, image: '/images/Feedback/image1.jpeg' },
-  { id: 2, image: '/images/Feedback/image2.jpeg' },
-  { id: 3, image: '/images/Feedback/image3.jpeg' },
-  { id: 4, image: '/images/Feedback/image4.jpeg' },
-  { id: 5, image: '/images/Feedback/image5.jpeg' },
-  { id: 6, image: '/images/Feedback/image6.jpeg' },
-  { id: 7, image: '/images/Feedback/image7.jpeg' },
-  { id: 8, image: '/images/Feedback/image1.jpeg' },
-  { id: 9, image: '/images/Feedback/image9.jpeg' },
-  { id: 10, image: '/images/Feedback/image10.jpeg' },
-  { id: 11, image: '/images/Feedback/image11.jpeg' },
-  { id: 12, image: '/images/Feedback/image12.jpeg' },
-];
+import { useEffect, useState } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMedia } from 'react-use';
+import { motion } from 'framer-motion';
+import { FaMapPin  } from "react-icons/fa6";
 
 export default function Testimonials() {
-  const controls = useAnimation();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const isMobile = useMedia('(max-width: 1024px)', false);
 
-  const getVisibleTestimonials = () => {
-    const start = currentIndex % testimonials.length;
-    const end = start + 3;
-    if (end <= testimonials.length) {
-      return testimonials.slice(start, end);
-    }
-    return [...testimonials.slice(start), ...testimonials.slice(0, end - testimonials.length)];
-  };
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: isMobile ? 'center' : 'start',
+    loop: true,
+    direction: 'rtl',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps',
+    duration: 30,
+  });
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    const animate = async () => {
-      // Immediate transition without delay
-      await controls.start({
-        opacity: [1, 0], // Quick fade out
-        y: [0, 20],
-        transition: { duration: 0.3, ease: 'easeOut' }
+    if (emblaApi) {
+      emblaApi.on('select', () => {
+        setSelectedIndex(emblaApi.selectedScrollSnap());
       });
-      
-      setCurrentIndex((prev) => (prev + 3) % testimonials.length);
-      
-      await controls.start({
-        opacity: [0, 1], // Immediate fade in
-        y: [20, 0],
-        transition: { duration: 0.3, ease: 'easeIn' }
-      });
-    };
+    }
+  }, [emblaApi]);
 
-    // Initial animation
-    controls.start({ opacity: 1, y: 0 });
-
-    const interval = setInterval(animate, 5000); // Reduced to 5s for better testing, adjust as needed
+  useEffect(() => {
+    const interval = setInterval(() => {
+      emblaApi?.scrollNext();
+    }, 5000);
     return () => clearInterval(interval);
-  }, [controls]);
+  }, [emblaApi]);
 
-  const visibleTestimonials = getVisibleTestimonials();
+  const testimonials = [
+    { id: 1, image: '/images/Feedback/image1.jpeg' },
+    { id: 2, image: '/images/Feedback/image2.jpeg' },
+    { id: 3, image: '/images/Feedback/image3.jpeg' },
+    { id: 4, image: '/images/Feedback/image4.jpeg' },
+    { id: 5, image: '/images/Feedback/image5.jpeg' },
+    { id: 6, image: '/images/Feedback/image6.jpeg' },
+    { id: 7, image: '/images/Feedback/image7.jpeg' },
+    { id: 8, image: '/images/Feedback/image8.jpeg' },
+    { id: 9, image: '/images/Feedback/image9.jpeg' },
+    { id: 10, image: '/images/Feedback/image10.jpeg' },
+    { id: 11, image: '/images/Feedback/image11.jpeg' },
+  ];
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900 px-6 py-16">
-      <div className="container mx-auto">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-5xl md:text-6xl font-bold mb-12 text-center bg-primary bg-clip-text text-transparent"
-        >
+    <div className='bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900 px-6 py-16'>
+      <div className='container mx-auto relative'>
+        <h1 className='text-5xl md:text-6xl font-bold mb-12 text-center bg-primary bg-clip-text text-transparent'>
           המלצות
-        </motion.h1>
-
-        <div className="overflow-hidden">
-          <motion.div
-            animate={controls}
-            initial={{ opacity: 0, y: 20 }}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 m-2"
-          >
-            {visibleTestimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
-                className="relative shadow-md bg-white rounded-3xl overflow-hidden h-auto w-auto flex items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-3xl"
-              >
-                <Image
-                  src={testimonial.image}
-                  alt="פידבק"
-                  width={250}
-                  height={250}
-                  className="object-cover w-auto h-auto rounded-xl"
-                />
-              </div>
+        </h1>
+        <div className='relative px-4'>
+          <div className='overflow-hidden' ref={emblaRef}>
+            <div className='flex gap-6 px-4 '>
+              {testimonials.map((item) => (
+                <TestimonialsCard key={item.id} {...item} />
+              ))}
+            </div>
+          </div>
+          <div className='flex justify-center gap-2 mt-6'>
+            {testimonials.map((_, index) => (
+              <button
+                key={index}
+                className={`h-1 w-8 rounded-full transition-all duration-300 ${
+                  selectedIndex === index ? 'bg-gray-900' : 'bg-gray-400'
+                }`}
+                onClick={() => emblaApi?.scrollTo(index)}
+              />
             ))}
-          </motion.div>
+          </div>
+
+          {!isMobile && (
+            <>
+              <button
+                onClick={() => emblaApi?.scrollPrev()}
+                className='absolute top-1/2 right-4 -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none'>
+                <ChevronRight size={24} />
+              </button>
+              <button
+                onClick={() => emblaApi?.scrollNext()}
+                className='absolute top-1/2 left-4 -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none'>
+                <ChevronLeft size={24} />
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
+  );
+}
+
+interface TestimonialsCardProps {
+  image: string;
+}
+
+function TestimonialsCard({ image }: TestimonialsCardProps) {
+  return (
+    <motion.div
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.6, ease: 'easeOut' }}
+    className="relative flex-[0_0_90%] sm:flex-[0_0_45%] md:flex-[0_0_30%] lg:flex-[0_0_23%] p-2 items-center justify-center"
+  >
+    {/* <div className='w-auto h-auto bg-white flex items-center justify-center'>
+      <FaMapPin className="top-0 left-1/2 -translate-x-1/2 text-primary text-2xl" />
+    </div> */}
+    <Image src={image} alt="testimonial" width={300} height={500} className="rounded-xl object-cover" />
+  </motion.div>  
   );
 }
