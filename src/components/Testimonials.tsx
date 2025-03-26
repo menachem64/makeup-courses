@@ -51,25 +51,27 @@ export default function Testimonials() {
   ];
 
   return (
-    <div className='bg-gradient-to-b from-gray-50 to-gray-100 text-gray-900 px-6 py-16'>
-      <div className='container mx-auto relative'>
-        <h1 className='text-5xl md:text-6xl font-bold mb-12 text-center bg-primary bg-clip-text text-transparent'>
+    <div className="bg-gradient-to-b from-gray-50 to-gray-200 text-gray-900 px-6 py-16">
+      <div className="container mx-auto relative">
+        <h1 className="text-5xl md:text-6xl font-extrabold mb-12 text-center bg-primary bg-clip-text text-transparent drop-shadow-md">
           המלצות
         </h1>
-        <div className='relative px-4'>
-          <div className='overflow-hidden' ref={emblaRef}>
-            <div className='flex gap-6 px-4 '>
+        <div className="relative px-4">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex gap-6 px-4">
               {testimonials.map((item) => (
                 <TestimonialsCard key={item.id} {...item} />
               ))}
             </div>
           </div>
-          <div className='flex justify-center gap-2 mt-6'>
+          <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`h-1 w-8 rounded-full transition-all duration-300 ${
-                  selectedIndex === index ? 'bg-gray-900' : 'bg-gray-400'
+                className={`h-1.5 rounded transition-all duration-300 ${
+                  selectedIndex === index
+                    ? 'w-8 bg-primary'
+                    : 'w-4 bg-gray-400 opacity-70'
                 }`}
                 onClick={() => emblaApi?.scrollTo(index)}
               />
@@ -80,12 +82,14 @@ export default function Testimonials() {
             <>
               <button
                 onClick={() => emblaApi?.scrollPrev()}
-                className='absolute top-1/2 right-4 -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none'>
+                className="absolute top-1/2 right-4 -translate-y-1/2 z-10 p-3 bg-primary text-white shadow-lg rounded-full transition-all duration-300 hover:scale-110 focus:outline-none"
+              >
                 <ChevronRight size={24} />
               </button>
               <button
                 onClick={() => emblaApi?.scrollNext()}
-                className='absolute top-1/2 left-4 -translate-y-1/2 z-10 p-2 bg-gray-200 rounded-full hover:bg-gray-300 focus:outline-none'>
+                className="absolute top-1/2 left-4 -translate-y-1/2 z-10 p-3 bg-primary text-white shadow-lg rounded-full transition-all duration-300 hover:scale-110 focus:outline-none"
+              >
                 <ChevronLeft size={24} />
               </button>
             </>
@@ -103,16 +107,21 @@ interface TestimonialsCardProps {
 function TestimonialsCard({ image }: TestimonialsCardProps) {
   return (
     <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, ease: 'easeOut' }}
-    className="relative flex-[0_0_90%] sm:flex-[0_0_45%] md:flex-[0_0_30%] lg:flex-[0_0_23%] p-2 items-center justify-center"
-  >
-    {/* <div className='w-auto h-auto bg-white flex items-center justify-center'>
-      <FaMapPin className="top-0 left-1/2 -translate-x-1/2 text-primary text-2xl" />
-    </div> */}
-    <Image src={image} alt="testimonial" width={300} height={500} className="rounded-xl object-cover" />
-  </motion.div>  
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="relative flex-[0_0_90%] sm:flex-[0_0_45%] md:flex-[0_0_30%] lg:flex-[0_0_23%] p-2"
+    >
+      <div className="relative overflow-hidden rounded-xl shadow-xl bg-white transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+        <Image
+          src={image}
+          alt="testimonial"
+          width={300}
+          height={500}
+          className="rounded-xl object-cover"
+        />
+      </div>
+    </motion.div>
   );
 }
