@@ -64,7 +64,7 @@ export default function Testimonials() {
               ))}
             </div>
           </div>
-          {/* <div className="flex justify-center gap-2 mt-8">
+          <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -76,7 +76,7 @@ export default function Testimonials() {
                 onClick={() => emblaApi?.scrollTo(index)}
               />
             ))}
-          </div> */}
+          </div>
 
           {!isMobile && (
             <>
@@ -118,7 +118,7 @@ function TestimonialsCard({ image }: TestimonialsCardProps) {
           src={image}
           alt="testimonial"
           width={300}
-          height={500}
+          height={300}
           className="rounded-xl object-cover"
         />
       </div>
